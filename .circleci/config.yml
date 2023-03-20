@@ -15,16 +15,6 @@ jobs:
       - node/install:
           node-version: '14.15'
       - checkout
-      - run:
-          name: Install AWS CLI
-          command: |
-            sudo apt-get update
-            sudo apt install python3-pip
-            sudo pip3 install awsebcli --upgrade
-      - run: |
-          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-          aws configure set default.region $AWS_REGION
 
       # Use root level package.json to install dependencies in the frontend app
       - run:
@@ -77,6 +67,23 @@ jobs:
       - eb/setup
       - aws-cli/setup
       - checkout
+      - run:
+          name: Install EB CLI
+          command: |
+            sudo apt-get update
+            sudo apt-get install python3-pip -y
+            sudo pip3 install --upgrade pip
+            sudo pip3 install awsebcli
+      - run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set default.region $AWS_REGION
+      - run:
+          name: Deploy to Elastic Beanstalk
+          command: |
+            eb init udagram-api --region $AWS_REGION --platform node.js
+            eb use udagram-api
+            eb deploy udagram-api
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
