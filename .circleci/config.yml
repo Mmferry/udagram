@@ -80,7 +80,7 @@ jobs:
       - run:
           name: Deploy to Elastic Beanstalk
           command: |
-            if eb status udagram-api-test
+            if eb status udagram-api-test; then
               echo "Environment exists, terminating..."
               eb terminate udagram-api-test --all
             else
