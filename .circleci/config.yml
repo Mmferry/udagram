@@ -90,7 +90,6 @@ jobs:
             eb create --sample udagram-api-test
             eb use udagram-api-test
             eb deploy udagram-api-test
-            eb status
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
