@@ -63,7 +63,7 @@ jobs:
     steps:
       - node/install:
           node-version: '14.15'
-      - awscli/install
+      - aws-cli/install
       - eb/setup
       - aws-cli/setup
       - checkout
