@@ -80,6 +80,12 @@ jobs:
       - run:
           name: Deploy to Elastic Beanstalk
           command: |
+            if eb status <environment-name> >/dev/null 2>&1; then
+              echo "Environment exists, terminating..."
+              eb terminate <environment-name> --all
+            else
+              echo "Environment does not exist"
+            fi
             eb init udagram-api --region $AWS_DEFAULT_REGION --platform node.js
             eb create --sample udagram-api-test
             eb use udagram-api-test
