@@ -81,8 +81,10 @@ jobs:
           name: Deploy to Elastic Beanstalk
           command: |
             eb init udagram-api --region $AWS_DEFAULT_REGION --platform node.js
-            eb use udagram-api
-            eb deploy udagram-api
+            eb create --sample udagram-api-test
+            eb use udagram-api-test
+            eb deploy udagram-api-test
+            eb status
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
