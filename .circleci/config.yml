@@ -67,6 +67,11 @@ jobs:
       - aws-cli/setup
       - checkout
       - run:
+          name: Set AWS region
+          command: |
+            echo "Setting AWS region to us-east-1"
+            export AWS_DEFAULT_REGION=us-east-1
+      - run:
           name: Install EB CLI
           command: |
             sudo apt-get update
