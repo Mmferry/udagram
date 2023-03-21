@@ -2,9 +2,6 @@
   "name": "udagram-api",
   "version": "2.0.0",
   "description": "",
-  "engines": {
-    "node": "14.15.0"
-  },
   "main": "server.ts",
   "scripts": {
     "start:dev": "node ./src/server.js",
@@ -13,7 +10,7 @@
     "dev": "npx ts-node-dev --respawn --transpile-only ./src/server.ts",
     "prod": "npx tsc && node ./www/server.js",
     "clean": "rimraf www/ || true",
-    "copy": "cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk && cp .npmrc www/.npmrc && cp package.json www/package.json",
+    "copy": "cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk && cp .npmrc www/.npmrc && cp Procfile www/Procfile && cp package.json www/package.json",
     "zip": "zip -r Archive.zip .",
     "deploy": "npm run build && eb list && eb use udagram-api && eb deploy",
     "build": "npm install . && npm run clean && tsc && npm run copy && cd www && npm run zip && cd ..",
@@ -22,6 +19,9 @@
   "keywords": [],
   "author": "Mohammed Fared",
   "license": "ISC",
+  "engines": {
+    "node": "14.15.0"
+  },
   "dependencies": {
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "^8.3.2",
