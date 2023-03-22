@@ -82,6 +82,7 @@ jobs:
           command: |
             if eb status udagram-api-test; then
               echo "Environment exists, terminating..."
+              eb init
               eb terminate udagram-api-test --all
             else
               echo "Environment does not exist"
