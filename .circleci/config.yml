@@ -56,7 +56,6 @@ jobs:
   deploy:
     docker:
       - image: 'cimg/base:stable'
-      - image: circleci/python:3.7.3
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
