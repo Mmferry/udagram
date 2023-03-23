@@ -79,9 +79,9 @@ jobs:
       - run:
           name: Deploy to Elastic Beanstalk
           command: |
+            npm run api:deploy
             eb init udagram-api --region $AWS_DEFAULT_REGION --platform "Node.js 14 running on 64bit Amazon Linux 2"
             eb create --sample udagram-api-test
-            npm run api:deploy
             eb use udagram-api-test
             eb deploy udagram-api-test
 
