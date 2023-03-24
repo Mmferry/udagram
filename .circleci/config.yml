@@ -83,12 +83,10 @@ jobs:
             # eb create --sample udagram-api-test
             npm run api:deploy
             eb use udagram-api-test
+            prefix="v1.0."
             timestamp=$(date +'%Y%m%d%H%M%S')
-            echo $timestamp
-            var='v0.'
-            versionLabel="$var"-"$timestamp"
-            echo $versionLabel
-            eb deploy udagram-api-test -1 $versionLabel
+            versionLabel="$prefix$timestamp"
+            eb deploy udagram-api-test --label $versionLabel
 
 workflows:
   udagram:
