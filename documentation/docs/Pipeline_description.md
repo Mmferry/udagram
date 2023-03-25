@@ -14,3 +14,5 @@ The pipeline is setup and connected with this GitHub repository in CircleCI.
 8. Install EB CLI
 9. Configure AWS credentials
 10. Deploy to Elastic Beanstalk
+
+![Infrastructure Schema](../screenshots/pipline_digram.drawio.png)
