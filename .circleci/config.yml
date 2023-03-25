@@ -108,6 +108,7 @@ jobs:
             prefix="v1.0."
             timestamp=$(date +'%Y%m%d%H%M%S')
             versionLabel="$prefix$timestamp"
+            cd .\udagram\udagram-api\
             eb deploy udagram-api-test --label $versionLabel
 
 workflows:
