@@ -10,7 +10,7 @@
     "dev": "npx ts-node-dev --respawn --transpile-only ./src/server.ts",
     "prod": "npx tsc && node ./www/server.js",
     "clean": "rimraf www/ || true",
-    "copy": "cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk && cp -R .ebextensions www/.ebextensions && cp .npmrc www/.npmrc && cp .npmrc www/.npmrc && cp package.json www/package.json",
+    "copy": "cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk && cp .npmrc www/.npmrc && cp .npmrc www/.npmrc && cp package.json www/package.json",
     "zip": "zip -r Archive.zip .",
     "deploy": "npm run build && eb list",
     "build": "npm install . && npm run clean && tsc && npm run copy && cd www && npm run zip && cd ..",
