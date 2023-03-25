@@ -12,4 +12,4 @@
 
 ## Infrastructure Schema
 
-![Infrastructure Schema](./screenshots/Infrastructure.jpg)
+![Infrastructure Schema](../screenshots/Infrastructure.jpg)
