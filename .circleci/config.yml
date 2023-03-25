@@ -84,11 +84,26 @@ jobs:
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
             aws configure set default.region $AWS_DEFAULT_REGION
       - run:
+          name: Set environment variables
+          command: |
+            export POSTGRES_USERNAME=$POSTGRES_USERNAME
+            export POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+            export POSTGRES_HOST=$POSTGRES_HOST
+            export POSTGRES_DB=$POSTGRES_DB
+            export DB_PORT=$DB_PORT
+            export AWS_BUCKET=$AWS_BUCKET
+            export AWS_REGION=$AWS_REGION
+            export AWS_PROFILE=$AWS_PROFILE
+            export JWT_SECRET=$JWT_SECRET
+            export URL=$JWT_SECRET
+            export PORT=$PORT
+      - run:
           name: Deploy to Elastic Beanstalk
           command: |
             eb init udagram-api --region $AWS_DEFAULT_REGION --platform "Node.js 14 running on 64bit Amazon Linux 2"
             npm run deploy
             eb use udagram-api-test
+            eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME POSTGRES_PASSWORD=$POSTGRES_PASSWORD POSTGRES_HOST=$POSTGRES_HOST POSTGRES_DB=$POSTGRES_DB DB_PORT=$DB_PORT AWS_BUCKET=$AWS_BUCKET AWS_REGION=$AWS_REGION JWT_SECRET=$JWT_SECRET URL=$URL PORT=$PORT
             prefix="v1.0."
             timestamp=$(date +'%Y%m%d%H%M%S')
             versionLabel="$prefix$timestamp"
